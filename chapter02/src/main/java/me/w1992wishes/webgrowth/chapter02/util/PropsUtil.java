@@ -7,7 +7,8 @@ import java.io.*;
 import java.util.Properties;
 
 /**
- * Created by w1992wishes on 2017/12/18.
+ * Created by w1992wishes
+ * on 2017/12/18.
  */
 public final class PropsUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(PropsUtil.class);
@@ -15,8 +16,8 @@ public final class PropsUtil {
     /**
      * 加载属性文件
      *
-     * @param fileName
-     * @return
+     * @param fileName 文件名
+     * @return 属性
      */
     public static Properties loadProps(String fileName){
         Properties props = null;
@@ -24,7 +25,7 @@ public final class PropsUtil {
         try {
             is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
             if (is == null){
-                throw new FileNotFoundException(fileName = " file is not found");
+                throw new FileNotFoundException(fileName + " file is not found");
             }
             props = new Properties();
             props.load(is);
