@@ -33,19 +33,19 @@ public class CustomerServiceTest {
 
     @Test
     public void getCustomerListTest() throws  Exception{
-        List<Customer> customerList = customerService.getCustomerList("");
+        List<Customer> customerList = customerService.getCustomerList();
         Assert.assertEquals(2, customerList.size());
     }
 
     @Test
     public void getCustomerList2Test() throws  Exception{
-        List<Customer> customerList = customerService.getCustomerList2("");
+        List<Customer> customerList = customerService.getCustomerList2();
         Assert.assertEquals(2, customerList.size());
     }
 
     @Test
     public void getCustomerList3Test() throws  Exception{
-        List<Customer> customerList = customerService.getCustomerList3("");
+        List<Customer> customerList = customerService.getCustomerList3();
         Assert.assertEquals(2, customerList.size());
     }
 

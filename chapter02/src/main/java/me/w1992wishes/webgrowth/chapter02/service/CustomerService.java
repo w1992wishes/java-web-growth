@@ -21,10 +21,10 @@ public class CustomerService {
 
     /**
      * 获取客户列表
-     * @param key
+     *
      * @return
      */
-    public List<Customer> getCustomerList(String key){
+    public List<Customer> getCustomerList(){
         List<Customer> customerList = new ArrayList<>();
         Connection conn = null;
         try {
@@ -53,10 +53,9 @@ public class CustomerService {
     /**
      * 获取客户列表 利用DatabaseHelper2，将赋值语句省去
      *
-     * @param key
      * @return
      */
-    public List<Customer> getCustomerList2(String key){
+    public List<Customer> getCustomerList2(){
         String sql = "SELECT * FROM customer";
         return DatabaseHelper2.queryEntityList(Customer.class, sql);
     }
@@ -64,10 +63,9 @@ public class CustomerService {
     /**
      * 获取客户列表 利用DatabaseHelper3
      *
-     * @param key
      * @return
      */
-    public List<Customer> getCustomerList3(String key){
+    public List<Customer> getCustomerList3(){
         String sql = "SELECT * FROM customer";
         return DatabaseHelper3.queryEntityList(Customer.class, sql);
     }

@@ -1,25 +1,35 @@
 package me.w1992wishes.webgrowth.chapter02.controller;
 
+import me.w1992wishes.webgrowth.chapter02.model.Customer;
+import me.w1992wishes.webgrowth.chapter02.service.CustomerService;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by w1992wishes on 2017/12/18.
  */
-@WebServlet("customer_crete")
+@WebServlet("/customer")
 public class CustomerServlet extends HttpServlet {
+
+    private CustomerService customerService;
+
+    @Override
+    public void init() throws ServletException {
+        customerService = new CustomerService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        List<Customer> customerList = customerService.getCustomerList3();
+        req.setAttribute("customerList", customerList);
+        req.getRequestDispatcher("WEB-INF/view/customer.jsp").forward(req, resp);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
 }
