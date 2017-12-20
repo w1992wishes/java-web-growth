@@ -2,15 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>java-web-growth</artifactId>
-        <groupId>me.w1992wishes.webgrowth</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chapter02</artifactId>
-    <packaging>war</packaging>
+    <groupId>me.w1992wishes.webgrowth</groupId>
+    <artifactId>smart-framework</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- JavaWeb 需要的Servlet、JSP、JSTL依赖 -->
@@ -77,24 +74,23 @@
             <version>4.0</version>
         </dependency>
 
-        <!-- 单元测试 -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.0</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Tomcat 以maven插件的形式引入tomcat容器-->
+            <!-- Compile 统一源代码和编译输出的JDK版本-->
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
                 <configuration>
-                    <path>/${project.artifactId}</path>
-                    <port>81</port>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
