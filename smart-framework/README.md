@@ -55,6 +55,22 @@ IocHelper只有一个static块，所以当IocHelper被加载时，静态代码�
 
 第一次访问类时，就会加载static块，新增HelperLoader只是让加载更集中
 
+## 十、请求转发器
+
+以上都是在为这部做准备；
+
+1. 首先开发一个Servlet，它处理所有的请求；
+2. 从HttpServletRequest中获取请求方法和路径，封装成Request，然后用ControllerHelper.getHandler获取Handler。
+3. 同时可以获取请求参数，封装成Param；
+4. 拿到Handler后，就可以获取处理请求的Controller类，并通过BeanHelper.getBean获取Controller实例；
+5. 调用Handler的method方法，即Controller的方法，可以获取返回值，返回值有两种：
+    * View型的视图对象，则返回一个JSP页面；
+    * Data型的数据对象，则返回一个JSON数据。
+
+
+
+
+
 
 
 
