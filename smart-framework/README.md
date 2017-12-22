@@ -47,4 +47,14 @@ IocHelper只有一个static块，所以当IocHelper被加载时，静态代码�
 
 ## 八、加载Controller
 
+通过ClassHelper可以获取所有的Controller，然后可以通过反射获取Controller中所有带Action注解的方法，获取Action
+注解中的请求表达式，进而获取请求方法和请求路径，封装成Request对象与Handler对象(哪个Controller中的哪个方法)，最后建立Request和Handler的映射，
+放入Map中，并提供一个可根据请求方法与请求路径获取处理对象的方法。
+
+## 九、初始化框架
+
+第一次访问类时，就会加载static块，新增HelperLoader只是让加载更集中
+
+
+
 
