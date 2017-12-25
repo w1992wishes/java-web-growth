@@ -79,10 +79,16 @@ public class DispatcherServlet extends HttpServlet{
             Param param = new Param(paramMap);
             //调用Action方法
             Method actionMethod = handler.getActionMethod();
-            Object result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, param);
+            Class<?>[] methodParams = actionMethod.getParameterTypes();
+            Object result;
+            if (ArrayUtil.isEmpty(methodParams)){
+                result = ReflectionUtil.invokeMethod(controllerBean, actionMethod);
+            }else {
+                result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, param);
+            }
             //处理Action返回值
-            if (request instanceof View){
-                View view = (View) request;
+            if (result instanceof View){
+                View view = (View) result;
                 String path = view.getPath();
                 if (StringUtil.isNotEmpty(path)){
                     if (path.startsWith("/")){
@@ -95,7 +101,7 @@ public class DispatcherServlet extends HttpServlet{
                         request.getRequestDispatcher(ConfigHelper.getAppJspPath() + path).forward(request, response);
                     }
                 }
-            }else if (request instanceof Data){
+            }else if (result instanceof Data){
                 Data data = (Data) result;
                 Object model = data.getModel();
                 if (model != null){

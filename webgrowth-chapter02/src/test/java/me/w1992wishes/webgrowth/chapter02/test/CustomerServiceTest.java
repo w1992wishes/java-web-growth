@@ -105,7 +105,7 @@ public class CustomerServiceTest {
         fieldMap.put("telephone", "13233664444");
         fieldMap.put("email", "bob22@jmail.com");
         fieldMap.put("remark", "good boy");
-        boolean result = customerService.updateCustomer2(3, fieldMap);
+        boolean result = customerService.updateCustomer2(1, fieldMap);
         Assert.assertTrue(result);
     }
 
