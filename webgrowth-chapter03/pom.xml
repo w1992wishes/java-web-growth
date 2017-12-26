@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>me.w1992wishes.webgrowth</groupId>
-            <artifactId>smart-framework</artifactId>
+            <artifactId>smart-framework01</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
