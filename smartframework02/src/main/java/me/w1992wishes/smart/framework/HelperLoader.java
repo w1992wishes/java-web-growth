@@ -1,9 +1,6 @@
 package me.w1992wishes.smart.framework;
 
-import me.w1992wishes.smart.framework.helper.BeanHelper;
-import me.w1992wishes.smart.framework.helper.ClassHelper;
-import me.w1992wishes.smart.framework.helper.ControllerHelper;
-import me.w1992wishes.smart.framework.helper.IocHelper;
+import me.w1992wishes.smart.framework.helper.*;
 import me.w1992wishes.smart.framework.util.ClassUtil;
 
 /**
@@ -18,6 +15,7 @@ public final class HelperLoader {
         Class<?> [] classList = {
                 ClassHelper.class,
                 BeanHelper.class,
+                AopHelper.class,
                 IocHelper.class,
                 ControllerHelper.class
         };

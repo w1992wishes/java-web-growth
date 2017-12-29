@@ -41,7 +41,7 @@ public final class ClassHelper {
      * @return
      */
     public static Set<Class<?>> getServiceClassSet(){
-        return getAnnotationClassSet(Service.class);
+        return getClassSetByAnnotation(Service.class);
     }
 
     /**
@@ -50,7 +50,7 @@ public final class ClassHelper {
      * @return
      */
     public static Set<Class<?>> getControllerClassSet(){
-        return getAnnotationClassSet(Controller.class);
+        return getClassSetByAnnotation(Controller.class);
     }
 
     /**
@@ -71,10 +71,22 @@ public final class ClassHelper {
      * @param clazz
      * @return
      */
-    private static Set<Class<?>> getAnnotationClassSet(Class<? extends Annotation> clazz){
+    public static Set<Class<?>> getClassSetByAnnotation(Class<? extends Annotation> clazz){
         return CLASS_SET.stream()
                  .filter(cls -> cls.isAnnotationPresent(clazz))
                  .collect(toSet());
+    }
+
+    /**
+     * 获取某父类或接口的所有子类
+     *
+     * @param superClass
+     * @return
+     */
+    public static Set<Class<?>> getClassSetBySuper(Class<?> superClass){
+        return CLASS_SET.stream()
+                .filter(cls -> superClass.isAssignableFrom(cls) && !superClass.equals(cls))
+                .collect(toSet());
     }
 
 }

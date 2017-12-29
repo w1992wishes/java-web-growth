@@ -39,7 +39,7 @@ public abstract class AspectProxy implements Proxy{
         }finally {
             end();
         }
-        return null;
+        return result;
     }
 
     public void begin(){
