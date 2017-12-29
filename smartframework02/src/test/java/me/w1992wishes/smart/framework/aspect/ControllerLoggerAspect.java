@@ -11,20 +11,15 @@ import java.lang.reflect.Method;
  * on 2017/12/29.
  */
 @Aspect(Controller.class)
-public class ControllerAspect extends AspectProxy {
-
-    private long start;
+public class ControllerLoggerAspect extends AspectProxy {
 
     @Override
     public void before(Class<?> cls, Method method, Object[] params) throws Throwable{
-        start = System.currentTimeMillis();
-        System.out.println("--- start --------");
+        System.out.println( method.getName() + "--------- start");
     }
 
     @Override
     public void after(Class<?> cls, Method method, Object[] params, Object result) {
-        System.out.println("--- end ---------");
-        System.out.println(System.currentTimeMillis() - start);
+        System.out.println( method.getName() + "--------- end");
     }
-
 }
