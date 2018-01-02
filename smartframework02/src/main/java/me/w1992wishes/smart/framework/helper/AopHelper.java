@@ -1,6 +1,7 @@
 package me.w1992wishes.smart.framework.helper;
 
 import me.w1992wishes.smart.framework.annotation.Aspect;
+import me.w1992wishes.smart.framework.annotation.Transaction;
 import me.w1992wishes.smart.framework.proxy.AspectProxy;
 import me.w1992wishes.smart.framework.proxy.Proxy;
 import me.w1992wishes.smart.framework.proxy.ProxyManager;
@@ -59,6 +60,16 @@ public final class AopHelper {
      */
     private static Map<Class<?>, Set<Class<?>>> createProxyMap() throws Exception{
         Map<Class<?>, Set<Class<?>>> proxyMap = new HashMap<>();
+        addAspectProxy(proxyMap);
+        addTransactionProxy(proxyMap);
+        return proxyMap;
+    }
+
+    /**
+     * 添加“普通切面代理-目标类集合”映射
+     * @param proxyMap
+     */
+    private static void addAspectProxy(Map<Class<?>, Set<Class<?>>> proxyMap) throws Exception {
         Set<Class<?>> proxyClassSet = ClassHelper.getClassSetBySuper(AspectProxy.class);
         for (Class<?> proxyClass : proxyClassSet){
             if (proxyClass.isAnnotationPresent(Aspect.class)){
@@ -67,7 +78,15 @@ public final class AopHelper {
                 proxyMap.put(proxyClass, targetClassSet);
             }
         }
-        return proxyMap;
+    }
+
+    /**
+     * 添加“事务切面代理-目标集合类”映射
+     * @param proxyMap
+     */
+    private static void addTransactionProxy(Map<Class<?>, Set<Class<?>>> proxyMap){
+        Set<Class<?>> serviceClassSet = ClassHelper.getServiceClassSet();
+        proxyMap.put(Transaction.class, serviceClassSet);
     }
 
     /**

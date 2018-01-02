@@ -54,3 +54,38 @@ Spring 开发者老罗开发了spring aop，虽然一直改进，但还是很麻
 代理的目标类，得到 “代理类-目标类集合” 映射关系，然后根据这个关系得到 “目标类-代理对象集合” 映射关系，然后根据
 目标类-代理对象链得到最终的代理对象，放入“类-对象映射”map中。
 
+需要注意的是：应在加载IocHelper之前AopHelper，这样注入的对象就是代理对象了。
+
+![](http://p0zk0k5xl.bkt.clouddn.com/web-growth09.png)
+
+![](http://p0zk0k5xl.bkt.clouddn.com/web-growth10.png)
+
+## 五、ThreadLocal简介
+
+ThreadLocal为每个线程提供一个独立的副本。
+
+## 六、事务简介
+
+[数据库事务与锁详解](http://blog.csdn.net/aluomaidi/article/details/52460844)
+
+## 七、实现事务控制特性
+
+利用先前的开发的aop特性完成事务控制。
+
+### 7.1、定义事务注解Transaction
+
+方法级别的注解
+
+### 7.2、提供事务相关操作
+
+在DataBaseHelper中新增开启事务，提交事务，回滚事务的方法。
+
+### 7.3、编写事务代理切面类
+
+TransactionProxy的doProxy方法中，会在目标方法执行前打开事务，执行后提交事务，失败回滚事务。
+
+然后还需要将编写的事务代理机制添加到框架中，要在AopHelper中做一些改变。
+
+![](http://p0zk0k5xl.bkt.clouddn.com/web-growth11.png)
+
+![](http://p0zk0k5xl.bkt.clouddn.com/web-growth12.png)
