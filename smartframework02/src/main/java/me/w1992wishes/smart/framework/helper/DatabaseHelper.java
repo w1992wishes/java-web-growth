@@ -120,7 +120,7 @@ public final class DatabaseHelper {
             LOGGER.error("query entity list failure" , e);
             throw new RuntimeException(e);
         } finally {
-            closeConnection();
+           /* closeConnection();*/
         }
         return entityList;
     }
@@ -141,7 +141,7 @@ public final class DatabaseHelper {
             LOGGER.error("execute update failure", e);
             throw new RuntimeException(e);
         } finally {
-            closeConnection();
+            /*closeConnection();*/
         }
         return rows;
     }

@@ -5,6 +5,7 @@ import me.w1992wishes.smart.framework.annotation.Transaction;
 import me.w1992wishes.smart.framework.proxy.AspectProxy;
 import me.w1992wishes.smart.framework.proxy.Proxy;
 import me.w1992wishes.smart.framework.proxy.ProxyManager;
+import me.w1992wishes.smart.framework.proxy.TransactionProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,7 +87,7 @@ public final class AopHelper {
      */
     private static void addTransactionProxy(Map<Class<?>, Set<Class<?>>> proxyMap){
         Set<Class<?>> serviceClassSet = ClassHelper.getServiceClassSet();
-        proxyMap.put(Transaction.class, serviceClassSet);
+        proxyMap.put(TransactionProxy.class, serviceClassSet);
     }
 
     /**

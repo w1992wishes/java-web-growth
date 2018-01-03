@@ -89,3 +89,10 @@ TransactionProxy的doProxy方法中，会在目标方法执行前打开事务，
 ![](http://p0zk0k5xl.bkt.clouddn.com/web-growth11.png)
 
 ![](http://p0zk0k5xl.bkt.clouddn.com/web-growth12.png)
+
+## 八、测试
+
+在测试时，有需要注意的是，应将DatabaseHelper中的closeConnection方法注释，否则在提交事务时，
+获取的不是同一个connection，会报错。
+
+![](http://p0zk0k5xl.bkt.clouddn.com/web-growth13.png)

@@ -21,13 +21,13 @@ public class TransactionTest {
     @Before
     public void init(){
         HelperLoader.init();
-        customerService = new CustomerService();
+        customerService = BeanHelper.getBean(CustomerService.class);
     }
 
     @Test
     public void getCustomers(){
         List<Customer> customers = customerService.getCustomerList();
-        Assert.assertEquals(2, customers.size());
+        Assert.assertEquals(3, customers.size());
     }
 
     @Test
