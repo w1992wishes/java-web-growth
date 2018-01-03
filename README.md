@@ -12,6 +12,8 @@ chapter03--并利用这个轻量级框架辅助开发，加速开发速度；
 
 smart-framework02--接着丰富这个框架的功能，使开发的框架具有aop特性；
 
+smart-framework03--在第二版的基础上优化web框架。
+
 ## 二、工具
 
 * idea
@@ -24,4 +26,5 @@ smart-framework02--接着丰富这个框架的功能，使开发的框架具有a
 * webgrowth-chapter02 为web应用添加简单业务
 * smart-framework01 轻量级mvc框架第一版（自己造轮子）
 * webgrowth-chapter03 使用smart-framework开发web应用
+* smart-framework03--在第二版的基础上优化web框架
 
