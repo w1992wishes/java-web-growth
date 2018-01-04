@@ -12,6 +12,7 @@
         <module>webgrowth-chapter01</module>
         <module>webgrowth-chapter02</module>
         <module>webgrowth-chapter03</module>
+        <module>webgrowth-chapter04</module>
     </modules>
 
     <!-- 统一源代码编码方式 -->
