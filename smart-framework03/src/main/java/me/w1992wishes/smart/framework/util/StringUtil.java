@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class StringUtil {
 
+    public static final String SEPARATOR = String.valueOf((char) 29);
+
     public static boolean isEmpty(String str){
         if (str != null){
             str.trim();
