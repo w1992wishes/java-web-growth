@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>java-web-growth</artifactId>
+        <groupId>me.w1992wishes.webgrowth</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>webgrowth-chapter04</artifactId>
+    <packaging>war</packaging>
+    <name>webgrowth-chapter04 Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>me.w1992wishes.webgrowth</groupId>
+            <artifactId>smart-framework03</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>webgrowth-chapter04</finalName>
+        <plugins>
+            <!-- Tomcat 以maven插件的形式引入tomcat容器-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/${project.artifactId}</path>
+                    <port>83</port>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
