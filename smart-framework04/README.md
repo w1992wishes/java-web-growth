@@ -1,0 +1,18 @@
+# smart-framework 与Servlet API解耦
+
+先将smart-framework03的代码全部拷贝，在03的基础上进行改进。
+
+## 一、为何要与Servlet API解耦
+
+目前在Controller中无法调用Servlet API,必须在DispatchServlet中将Request和Response传递给Controller，
+但这会增加Controller和Servlet API的耦合，好的做法是提供一个线程安全的对象，封装
+Request和Response，并提供一系列常用的方法，然后让Controller调用这个对象，这样Controller完全不使用
+Servlet API就可以操作Request和Response。
+
+## 二、与Servlet API解耦的实现过程
+
+编写一个ServletHelper，封装Request和Response对象，并提供常用的ServletAPI工具方法，并利用ThreadLocal技术保证线程安全。
+
+在ServletHelper中，最重要的就是init方法和destroy方法，在DispatcherServlet的service中调用。
+
+接着在Controller中就可以调用ServletHelper封装的ServletAPI了，其实在Service中也可以，因为所有的调用都来自一个请求。

@@ -4,6 +4,11 @@ import me.w1992wishes.smart.framework.bean.Data;
 import me.w1992wishes.smart.framework.bean.Handler;
 import me.w1992wishes.smart.framework.bean.Param;
 import me.w1992wishes.smart.framework.bean.View;
+import me.w1992wishes.smart.framework.helper.*;
+import me.w1992wishes.smart.framework.util.ArrayUtil;
+import me.w1992wishes.smart.framework.util.JsonUtil;
+import me.w1992wishes.smart.framework.util.ReflectionUtil;
+import me.w1992wishes.smart.framework.util.StringUtil;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -50,44 +55,53 @@ public class DispatcherServlet extends HttpServlet{
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //获取请求方法与请求路径
-        String requestMethod = request.getMethod().toLowerCase();
-        String requestPath = request.getPathInfo();
+        //smart-framework04新增，初始化ServletHelper
+        ServletHelper.init(request, response);
 
-        //过滤/favicon.ico请求
-        if (requestPath.equals("/favicon.ico")){
-            return;
+        try {
+            //获取请求方法与请求路径
+            String requestMethod = request.getMethod().toLowerCase();
+            String requestPath = request.getPathInfo();
+
+            //过滤/favicon.ico请求
+            if (requestPath.equals("/favicon.ico")){
+                return;
+            }
+
+            //获取Action处理器
+            Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);
+            if (handler != null){
+                //获取Controller类及实例
+                Class<?> controllerClass = handler.getControllerClass();
+                Object controllerBean = BeanHelper.getBean(controllerClass);
+
+                Param param;
+                if (UploadHelper.isMultipart(request)){
+                    param = UploadHelper.createParam(request);
+                } else {
+                    param = RequestHelper.createParam(request);
+                }
+
+                Object result;
+                Method actionMethod = handler.getActionMethod();
+                Class<?>[] methodParams = actionMethod.getParameterTypes();
+                if (ArrayUtil.isEmpty(methodParams)){
+                    result = ReflectionUtil.invokeMethod(controllerBean, actionMethod);
+                }else {
+                    result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, param);
+                }
+
+                if (result instanceof View){
+                    handlerViewResult((View) result, request, response);
+                } else {
+                    handlerDataResult((Data) result, response);
+                }
+            }
+        } finally {
+            //smart-framework04新增
+            ServletHelper.destroy();
         }
 
-        //获取Action处理器
-        Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);
-        if (handler != null){
-            //获取Controller类及实例
-            Class<?> controllerClass = handler.getControllerClass();
-            Object controllerBean = BeanHelper.getBean(controllerClass);
-
-            Param param;
-            if (UploadHelper.isMultipart(request)){
-                param = UploadHelper.createParam(request);
-            } else {
-                param = RequestHelper.createParam(request);
-            }
-
-            Object result;
-            Method actionMethod = handler.getActionMethod();
-            Class<?>[] methodParams = actionMethod.getParameterTypes();
-            if (ArrayUtil.isEmpty(methodParams)){
-                result = ReflectionUtil.invokeMethod(controllerBean, actionMethod);
-            }else {
-                result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, param);
-            }
-            
-            if (result instanceof View){
-                handlerViewResult((View) result, request, response);
-            } else {
-                handlerDataResult((Data) result, response);
-            }
-        }
     }
 
     private void handlerDataResult(Data data, HttpServletResponse response) throws IOException {
