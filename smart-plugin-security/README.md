@@ -32,3 +32,13 @@ shiro框架，先在web.xml中添加：
 通过EnvironmentLoaderListener读取classpath中的shiro.ini文件，并加载其中的相关配置到内存中，
 一边ShiroFilter可随时读取，当客户端请求时，被ShiroFilter拦截，将请求中的URL和shiro.ini文件
 中的相关配置进行比较。
+
+我们的框架需要封装shiro相关细节，也包括配置文件，这需要通过Servlet3.0规范提供的注册特性来省略
+web.xml的相关配置，并将shiro.ini改为smart-security.ini文件。
+
+这些需要在web应用初始化的时候完成，可以实现ServletContainerInitializer接口，并在classpath下的
+META-INF/services/javax.servlet.ServletContainerInitializer添加需要初始化的类实现。
+
+暂且实现这样一个类：SmartSecurityPlugin。
+
+

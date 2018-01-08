@@ -34,6 +34,22 @@ public final class ReflectionUtil {
     }
 
     /**
+     * 通过反射创建实例
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T newInstance(String className) {
+        T instance;
+        try {
+            Class<?> commandClass = ClassUtil.loadClass(className);
+            instance = (T) commandClass.newInstance();
+        } catch (Exception e) {
+            LOGGER.error("new instance failure!", e);
+            throw new RuntimeException(e);
+        }
+        return instance;
+    }
+
+    /**
      * 方法调用
      *
      * @param obj

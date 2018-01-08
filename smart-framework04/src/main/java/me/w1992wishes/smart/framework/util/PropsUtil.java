@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by w1992wishes
@@ -125,4 +125,54 @@ public final class PropsUtil {
         }
         return value;
     }
+
+    /**
+     * 获取数值型属性
+     */
+    public static int getNumber(Properties props, String key) {
+        int value = 0;
+        if (props.containsKey(key)) {
+            value = CastUtil.castInt(props.getProperty(key));
+        }
+        return value;
+    }
+
+    // 获取数值型属性（带有默认值）
+    public static int getNumber(Properties props, String key, int defaultValue) {
+        int value = defaultValue;
+        if (props.containsKey(key)) {
+            value = CastUtil.castInt(props.getProperty(key));
+        }
+        return value;
+    }
+
+    /**
+     * 加载属性文件，并转为 Map
+     */
+    public static Map<String, String> loadPropsToMap(String propsPath) {
+        Map<String, String> map = new HashMap<String, String>();
+        Properties props = loadProps(propsPath);
+        for (String key : props.stringPropertyNames()) {
+            map.put(key, props.getProperty(key));
+        }
+        return map;
+    }
+
+    /**
+     * 获取指定前缀的相关属性
+     */
+    public static Map<String, Object> getMap(Properties props, String prefix) {
+        Map<String, Object> kvMap = new LinkedHashMap<String, Object>();
+        Set<String> keySet = props.stringPropertyNames();
+        if (CollectionUtil.isNotEmpty(keySet)) {
+            for (String key : keySet) {
+                if (key.startsWith(prefix)) {
+                    String value = props.getProperty(key);
+                    kvMap.put(key, value);
+                }
+            }
+        }
+        return kvMap;
+    }
+
 }
