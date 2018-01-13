@@ -34,6 +34,13 @@ public final class ClassUtil {
     }
 
     /**
+     * 加载类（将自动初始化）
+     */
+    public static Class<?> loadClass(String className) {
+        return loadClass(className, true);
+    }
+
+    /**
      * 加载类
      *
      * @param className
