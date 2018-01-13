@@ -29,3 +29,7 @@ smart-framework03--在第二版的基础上优化web框架。
 * smart-framework03--在第二版的基础上优化web框架
 * webgrowth-chapter04 使用smart-framework03测试文件上传
 
+## 四、寄语
+
+希望对阅读shtruts，spring等开源框架有帮助。
+
