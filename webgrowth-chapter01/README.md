@@ -20,10 +20,10 @@
 ### 3.1、可以在idea中配置tomcat运行
 
 配置Run/Debug Configurations：
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth01.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth01.png)
 
 接着配置deployment：
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth02.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth02.png)
 
 然后就可以运行，通过浏览器访问就可以了，因为配置了on update action为redeploy，修改servlet后直接ctrl+F9就可以直接在页面刷新看到效果。
 
@@ -46,13 +46,13 @@
         </plugins>
     </build>
 ```
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth03.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth03.png)
 
 点击tomcat7:run运行，修改jsp刷新可立即生效，但修改HelloServlet并不能实现热部署。
 
 也可以在Run/Debug Configuration中配置maven启动，如下：
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth04.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth04.png)
 
 这时ctrl+F9可以实现热部署。
 

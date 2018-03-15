@@ -56,9 +56,9 @@ Spring 开发者老罗开发了spring aop，虽然一直改进，但还是很麻
 
 需要注意的是：应在加载IocHelper之前AopHelper，这样注入的对象就是代理对象了。
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth09.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth09.png)
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth10.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth10.png)
 
 ## 五、ThreadLocal简介
 
@@ -86,13 +86,13 @@ TransactionProxy的doProxy方法中，会在目标方法执行前打开事务，
 
 然后还需要将编写的事务代理机制添加到框架中，要在AopHelper中做一些改变。
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth11.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth11.png)
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth12.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth12.png)
 
 ## 八、测试
 
 在测试时，有需要注意的是，应将DatabaseHelper中的closeConnection方法注释，否则在提交事务时，
 获取的不是同一个connection，会报错。
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth13.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth13.png)

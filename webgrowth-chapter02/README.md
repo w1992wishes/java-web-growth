@@ -4,7 +4,7 @@
 
 ### 1.1、需求分析
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth05.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth05.png)
 
 ### 1.2、系统设计
 
@@ -20,7 +20,7 @@
 
 customer:
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth06.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth06.png)
 
 3. 设计界面原型
 
@@ -28,7 +28,7 @@ customer:
 
 并不是经典的RESTFUL风格的URL：
 
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth07.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth07.png)
 
 ## 二、动手开发web应用
 
@@ -40,7 +40,7 @@ customer:
 
 1. 参考chapter01新建搭建web项目
 2. 采用MVC架构搭建Web应用项目结构(参考：[MVC入门经典——深入理解原理](http://blog.csdn.net/a1036645146/article/details/51493959))
-![](http://p0zk0k5xl.bkt.clouddn.com/web-growth08.png)
+![](http://p5mck73dl.bkt.clouddn.com/web-growth08.png)
 3. 编写模型层
 4. 编写控制层
 5. 编写服务层
